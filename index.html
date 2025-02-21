@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Video Downloader</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hidden Section */
+        .hidden {
+            display: none;
+        }
+
+        /* Thumbnail Styles */
+        #thumbnail img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+        }
+
+        #downloadThumbnail {
+            background-color: #28a745;
+            margin-top: 10px;
+        }
+
+        #downloadThumbnail:hover {
+            background-color: #218838;
+        }
+
+        /* Video Qualities Styles */
+        #videoQualities {
+            margin-top: 20px;
+        }
+
+        #qualityList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #qualityList li {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s;
+        }
+
+        #qualityList li:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Universal Video Downloader</h1>
+        <form id="downloadForm">
+            <input type="text" id="videoUrl" placeholder="Paste video URL here" required>
+            <button type="submit">Fetch Video</button>
+        </form>
+
+        <!-- Download Options Section -->
+        <div id="options" class="hidden">
+            <h2>Download Options</h2>
+
+            <!-- Thumbnail Section -->
+            <div id="thumbnail">
+                <img src="" alt="Video Thumbnail">
+                <button id="downloadThumbnail">Download Thumbnail</button>
+            </div>
+
+            <!-- Video Qualities Section -->
+            <div id="videoQualities">
+                <h3>Select Video Quality</h3>
+                <ul id="qualityList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle Form Submission
+        document.getElementById('downloadForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const videoUrl = document.getElementById('videoUrl').value;
+
+            // Simulate fetching video details (thumbnail and qualities)
+            const thumbnailUrl = 'https://via.placeholder.com/300'; // Placeholder thumbnail
+            const qualities = ['360p', '480p', '720p', '1080p']; // Simulated video qualities
+
+            // Display Thumbnail
+            const thumbnailImg = document.querySelector('#thumbnail img');
+            thumbnailImg.src = thumbnailUrl;
+
+            // Display Video Qualities
+            const qualityList = document.getElementById('qualityList');
+            qualityList.innerHTML = ''; // Clear previous list
+            qualities.forEach(quality => {
+                const li = document.createElement('li');
+                li.textContent = quality;
+                li.addEventListener('click', () => {
+                    alert(`Downloading video in ${quality} quality...`);
+                    // In a real app, you would trigger the download for the selected quality
+                });
+                qualityList.appendChild(li);
+            });
+
+            // Show Download Options Section
+            document.getElementById('options').classList.remove('hidden');
+        });
+
+        // Handle Thumbnail Download
+        document.getElementById('downloadThumbnail').addEventListener('click', function () {
+            const thumbnailUrl = document.querySelector('#thumbnail img').src;
+            alert(`Downloading thumbnail from ${thumbnailUrl}...`);
+            // In a real app, you would trigger the thumbnail download
+        });
+    </script>
+</body>
+</html>
